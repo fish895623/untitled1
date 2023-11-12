@@ -1,0 +1,29 @@
+<head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tbody>
+      <th> Id </th>
+      <th> TagName </th>
+      <% for (var i=0; i < keys.length; i++) { %>
+        <tr>
+          <td>
+            <!-- NOTE Need to sort to right -->
+            <%= keys[i].id %>
+          </td>
+          <td>
+            <%= keys[i].tagName %>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+</body>

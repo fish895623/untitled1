@@ -1,10 +1,10 @@
 export interface Daily {
-  id: number
-  datetime: Date
-  use: number
-  tag: number[]
+  id: number;
+  datetime: Date;
+  use: number;
+  tag: number[];
 }
 export interface TagList {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }

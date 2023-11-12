@@ -4,9 +4,12 @@ import bodyParser from "body-parser";
 import fs from "fs";
 import { TagList } from "./interfaces/types";
 
+// NOTE. Replace into ejs render https://d2fault.github.io/2018/12/26/20181226-nodejs-html-load-with-express/
+
 const app = express();
 
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
+app.engine("html", require("ejs").renderFile);
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -14,10 +17,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.get("/", (_req, res) => {
-  res.render("index", {
-    title: "Hey",
-    message: "Hello there!",
-  });
+  res.render("index.html", { item: 12 });
 });
 const checktemplates = () => {
   const fileList = ["database/taglist.json"];
@@ -48,23 +48,22 @@ app.all("/put", (req: Request, res: Response) => {
   });
   var json = JSON.stringify(obj.table);
   fs.writeFile("Hello.json", json, "utf-8", () => {});
-
   switch (req.method) {
     case "GET":
     case "POST":
-      res.render("put", {
+      res.render("put.html", {
         title: "Hey",
         message: "Hello there!",
       });
       break;
   }
 });
-app.all("/keylist", async (req: Request, res: Response) => {
+app.all("/taglist", async (req: Request, res: Response) => {
   const data: TagList[] = JSON.parse(fs.readFileSync("database/taglist.json", "utf-8"));
   switch (req.method) {
     case "GET":
     case "POST":
-      res.render("keylist", {
+      res.render("keylist.html", {
         keys: data,
       });
       break;
