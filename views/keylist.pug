@@ -1,0 +1,18 @@
+html
+  head 
+    title hello world
+    style.
+      table, th, td {
+        border: 1px solid black; 
+      }
+
+  body
+    table 
+      tbody
+        th Id
+        th TagName
+        each key in keys
+          tr
+            td= key.id
+            td= key.tagName
+  
